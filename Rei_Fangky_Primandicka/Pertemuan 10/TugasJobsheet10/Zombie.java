@@ -9,17 +9,17 @@ package TugasJobsheet10;
  *
  * @author Dell
  */
-public class Zombie implements Destroyable{
-    protected int health;
-    protected int level;
+abstract class Zombie implements Destroyable{
     
-    public void heal(){
-        
-    }
-    public void destroyed(){
-        
-    }
-    public String getZombie(){
-        return " ";
+    protected int health, level;
+
+    abstract public void heal();
+
+    @Override
+    abstract public void destroyed();
+
+    public String getZombieInfo() {
+        return "Health = " + this.health + "\n"
+                + "Level = " + this.level + "\n";
     }
 }

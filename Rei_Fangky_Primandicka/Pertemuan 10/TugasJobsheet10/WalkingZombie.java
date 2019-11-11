@@ -14,37 +14,36 @@ import java.util.logging.Level;
  */
 public class WalkingZombie extends Zombie{
     
-    public WalkingZombie(int health, int level){
-    super.level=level;
-    super.health=health;
+    public WalkingZombie(int health, int level) {
+        this.health = health;
+        this.level = level;
     }
-    public void heal(){
-        switch (level) {
+
+    @Override
+    public void heal() {
+        switch (this.level) {
             case 1:
-                System.out.println(health - 20);
+                this.health += (20 / 100 * this.health);
                 break;
             case 2:
-                System.out.println(health - 30);
+                this.health += (30 / 100 * this.health);
                 break;
             case 3:
-                System.out.println(health - 40);
-                break;
-            default:
-                System.out.println("----------");
+                this.health += (40 / 100 * this.health);
                 break;
         }
     }
-    public void destroyed(){
-        if(super.health == -2){
-            System.out.println(health - 2);
-        } else  {
-            System.out.println();
-        }
+
+    @Override
+    public void destroyed() {
+        this.health -= (20 * this.health / 100);
     }
-    public String getZombieInfo(){
-        String info = super.getZombie()+"\n";
-        info += "Walking Zombie Data =" +"\n health ="+health+"\n Level ="+level;
-        
-        return info;
+
+    @Override
+    public String getZombieInfo() {
+        String info = super.getZombieInfo();
+        return "Walking Zombie Data = \n"
+                + info;
     }
+
 }
